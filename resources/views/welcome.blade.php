@@ -17,27 +17,36 @@
         <div id="portfolio" class="container">
             <div id="portfolio-filters">
                 <ul id="filters" class="p-0">
-                    <li><a href="*" class="active">everything</a></li>
-                    <li><a href=".digital">Digital</a></li>
-                    <li><a href=".branding">Web Design</a></li>
+                    <li><a href="*" class="active">Tout</a></li>
+                    <li><a href=".digital">Contemporain</a></li>
+                    <li><a href=".branding">Médiéval</a></li>
                     <li><a href=".campaigns">Marketing</a></li>
                 </ul>
             </div>
             <div class="grid" data-cols="3" data-margin="0" data-height="1" data-masonry='{ "columnWidth": 200, "itemSelector": ".entry" }'>
                 <!-- entry -->
-                <div class="entry work-entry branding">
+                @foreach($arts as $art)
+                    @foreach($artists as $artist)
+                        @if($art->artist_id == $artist->id)
+                            @php 
+                            $artist_name = $artist->firstname . ' ' . $artist->lastname;
+                            @endphp
+                        @endif
+                    @endforeach
+                <div class="entry work-entry {{$art->title}}">
                     <a href="project.html">
-                        <div class="entry-image imageBG" data-img="./assets/img/photo-1558212628-ad7f5fb28c5e.jpg"></div>
+                        <div class="entry-image imageBG" data-img="{{ asset('/arts_images/'. $art->artPath) }}"></div>
                         <div class="work-entry-hover">
                             <div class="work-entry-content">
-                                <div class="work-entry-title">Liber Finance</div>
-                                <div class="work-entry-cat">Web</div>
+                                <div class="work-entry-title">{{$art->title}}</div>
+                                <div class="work-entry-cat">{{$artist_name}}</div>
                             </div>
                         </div>
                     </a>
                 </div>
+                @endforeach
                 <!-- end:entry -->
-                <div class="entry work-entry digital">
+                <!-- <div class="entry work-entry digital">
                     <a href="project.html">
                         <div class="entry-image imageBG" data-img="./assets/img/photo-1558180702-95f1c3ae2ca3.jpg"></div>
                         <div class="work-entry-hover">
@@ -47,9 +56,9 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- end:entry -->
-                <div class="entry work-entry campaigns">
+                <!-- <div class="entry work-entry campaigns">
                     <a href="project.html">
                         <div class="entry-image imageBG" data-img="./assets/img/photo-1558118720-fa5cdebe6b3a.jpg"></div>
                         <div class="work-entry-hover">
@@ -59,9 +68,9 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- end:entry -->
-                <div class="entry work-entry branding">
+                <!-- <div class="entry work-entry branding">
                     <a href="project.html">
                         <div class="entry-image imageBG" data-img="./assets/img/photo-1558100984-01e6cd6fc9aa.jpg"></div>
                         <div class="work-entry-hover">
@@ -71,9 +80,9 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- end:entry -->
-                <div class="entry work-entry campaigns h2">
+                <!-- <div class="entry work-entry campaigns h2">
                     <a href="project.html">
                         <div class="entry-image imageBG" data-img="./assets/img/photo-1494475673543-6a6a27143fc8.jpg"></div>
                         <div class="work-entry-hover">
@@ -83,9 +92,9 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- end:entry -->
-                <div class="entry work-entry branding digital">
+                <!-- <div class="entry work-entry branding digital">
                     <a href="project.html">
                         <div class="entry-image imageBG" data-img="./assets/img/photo-1557941760-987c3f403d5a.jpg"></div>
                         <div class="work-entry-hover">
@@ -95,9 +104,9 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- end:entry -->
-                <div class="entry work-entry digital">
+                <!-- <div class="entry work-entry digital">
                     <a href="project.html">
                         <div class="entry-image imageBG" data-img="./assets/img/photo-1534073828943-f801091bb18c.jpg"></div>
                         <div class="work-entry-hover">
@@ -107,9 +116,9 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- end:entry -->
-                <div class="entry work-entry brading">
+                <!-- <div class="entry work-entry brading">
                     <a href="project.html">
                         <div class="entry-image imageBG" data-img="./assets/img/photo-1484755560615-a4c64e778a6c.jpg"></div>
                         <div class="work-entry-hover">
@@ -119,7 +128,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- end:entry -->
 
 

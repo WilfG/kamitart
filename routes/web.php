@@ -3,7 +3,12 @@
 use App\Http\Controllers\ArtistsController;
 use App\Http\Controllers\ArtsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\UsersController;
+use App\Models\Art;
+use App\Models\Artist;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +23,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = Category::all();
+    $arts = DB::table('arts')->get();
+    $artists = Artist::all();
+    return view('welcome', compact('categories', 'arts', 'artists'));
 });
 
 Route::get('/dashboard', function () {
@@ -27,6 +35,7 @@ Route::get('/dashboard', function () {
 // Route::get('/register', function () {
 //     return view('auth.register');
 // });
+Route::resource('fronts', FrontController::class);
 
 Route::get('logout', [UsersController::class, 'logout']);
 Route::middleware(['auth'])->group(function(){

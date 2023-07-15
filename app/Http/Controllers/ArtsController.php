@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Art;
 use App\Models\Artist;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -58,7 +59,7 @@ class ArtsController extends Controller
                 $status = 1;
             }
             $extension = explode('.', $request->file('artPath')->getClientOriginalName())[1];
-            $filename = $request->title . '.' . $extension;
+            $filename = uniqid() . '.' . $extension;
             $path = 'arts_images';
 
             $art = DB::table('arts')->insert([
@@ -91,9 +92,10 @@ class ArtsController extends Controller
      */
     public function edit(string $id)
     {
-        $art = Art::where('id', $id)->first();
-        // $artists = Artist::all();
-        return view('dashboard.arts.edit', compact('art', 'artists'));
+        $art = DB::table('arts')->where('id', $id)->first();
+        $artists = Artist::all();
+        $categories = Category::all();
+        return view('dashboard.arts.edit', compact('art', 'artists', 'categories'));
     }
 
     /**
@@ -127,7 +129,7 @@ class ArtsController extends Controller
 
         if ($request->hasfile('artPath')) {
             $extension = explode('.', $request->file('artPath')->getClientOriginalName())[1];
-            $filename = $request->title . '.' . $extension;
+            $filename = uniqid() . '.' . $extension;
             $path = 'arts_images';
             // $request->file('artPath')->move(public_path($path), $filename);
             $art = DB::table('arts')->where('id', $id)->update([
@@ -135,6 +137,8 @@ class ArtsController extends Controller
                 'description' => $request->description,
                 'status' => $status,
                 'sale_price' => $request->sale_price,
+                'artist_id' => $request->artist_id,
+                'categorie_id' => $request->categorie_id,
                 'artPath' => $filename
             ]);
             if (file_exists(public_path('arts_images/'. $content_to_update->artPath))) {
@@ -149,7 +153,9 @@ class ArtsController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'status' => $status,
-                'sale_price' => $request->sale_price
+                'sale_price' => $request->sale_price,
+                'artist_id' => $request->artist_id,
+                'categorie_id' => $request->categorie_id,
             ]);
            
                 return redirect()->back()->with('status', 'Art updated with success.');

@@ -71,6 +71,15 @@
                                         @endforeach
                                     </select>
                                 </div>
+                               <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="artist_id">Artist :</label>
+                                    <select name="categorie_id" class="form-control" required>
+                                        <option value=""></option>
+                                        @foreach($categories as $categorie)
+                                        <option value="{{ $categorie->id }}" @if($art->categorie_id == $categorie->id) selected @endif>{{ $categorie->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="row">
