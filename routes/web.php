@@ -8,6 +8,7 @@ use App\Http\Controllers\UsersController;
 use App\Models\Art;
 use App\Models\Artist;
 use App\Models\Category;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Routes::get('home', function(){
+    return 'oui';
+});
 Route::get('/', function () {
     $categories = Category::all();
     $arts = DB::table('arts')->get();
