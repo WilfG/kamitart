@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Routes::get('home', function(){
+Route::get('home', function(){
     return 'oui';
 });
 Route::get('/', function () {
