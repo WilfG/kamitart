@@ -25,20 +25,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('home', function(){
     return 'oui';
 });
-Route::get('/', function () {
-    $categories = Category::all();
-    $arts = DB::table('arts')->get();
-    $artists = Artist::all();
-    return view('welcome', compact('categories', 'arts', 'artists'));
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
-Route::resource('fronts', FrontController::class);
+Route::get('/', [FrontController::class, 'index']);
 
 Route::get('logout', [UsersController::class, 'logout']);
 Route::middleware(['auth'])->group(function(){

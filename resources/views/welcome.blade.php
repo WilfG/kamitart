@@ -39,14 +39,14 @@
                         <div class="work-entry-hover">
                             <div class="work-entry-content">
                                 <div class="work-entry-title">{{$art->title}}</div>
-                                <div class="work-entry-cat">{{$artist_name}}</div>
+                                <div class="work-entry-cat">by {{$artist_name}}</div>
                             </div>
                         </div>
                     </a>
                 </div>
                 @endforeach
                 <!-- end:entry -->
-                <!-- <div class="entry work-entry digital">
+                <div class="entry work-entry digital">
                     <a href="project.html">
                         <div class="entry-image imageBG" data-img="./assets/img/photo-1558180702-95f1c3ae2ca3.jpg"></div>
                         <div class="work-entry-hover">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </a>
-                </div> -->
+                </div>
                 <!-- end:entry -->
                 <!-- <div class="entry work-entry campaigns">
                     <a href="project.html">
