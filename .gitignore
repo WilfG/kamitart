@@ -17,3 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/resources/views/backLayouts/index.blade.php
+/resources/views/frontLayouts/index.blade.php
+/resources/views/layouts/auth.blade.php
