@@ -84,7 +84,9 @@ class ArtsController extends Controller
      */
     public function show(string $id)
     {
-        return view('dashboard.arts.show');
+        $art = DB::table('arts')->where('id', $id)->first();
+        $artist = DB::table('artists')->where('id', $art->artist_id)->first();
+        return view('fronts.arts.show', compact('art', 'artist'));
     }
 
     /**

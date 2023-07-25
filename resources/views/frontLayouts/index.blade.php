@@ -18,11 +18,11 @@
     <div class="nav-main">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand font-weight-bold" href="/">KamitArt</a>
+                <a class="navbar-brand font-weight-bold" href="/">Artfric</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="col-lg-3 col-md-3"></div>
+                <div class="col-lg-5 col-md-5"></div>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -81,7 +81,7 @@
                         <li><a href="#">facebook</a></li>
                         <li><a href="#">twitter</a></li>
                         <!-- Please note.You are not allowed to remove credit link.Please respect that.-->
-                        <li><a href="https://sharebootstrap.com">dev by sharebootstrap</a></li>
+                        <!-- <li><a href="https://sharebootstrap.com">dev by sharebootstrap</a></li> -->
                     </ul>
                 </div>
             </div>

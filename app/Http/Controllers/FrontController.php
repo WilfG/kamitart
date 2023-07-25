@@ -19,7 +19,7 @@ class FrontController extends Controller
         $cat_contemporains = Category::where('name', 'Contemporain')->get();
         $arts = DB::table('arts')->get();
         $artists = Artist::all();
-        return view('welcome', compact('categories', 'arts', 'artists', 'cat_medievals', ''));
+        return view('welcome', compact('categories', 'arts', 'artists', 'cat_medievals', 'cat_contemporains'));
     }
 
     

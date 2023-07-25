@@ -30,8 +30,8 @@
                                 <td>{{ $artist->email }}</td>
                                 
                                 <td>
-                                    <a href="{{route('artists.show', $artist->id)}}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Voir les pièces jointes"><i class="fa fa-eye"></i></a>
-                                    <a href="{{route('artists.edit', $artist->id)}}" data-toggle="tooltip" title="Modifier" class="btn btn-warning btn-xs"><i class="fa fa-edit "></i> </a>
+                                    <!-- <a href="#" class="btn btn-primary btn-xs" data-toggle="tooltip" title=""><i class="fa fa-eye"></i></a> -->
+                                    <a href="{{route('artists.edit', $artist->id)}}" data-toggle="tooltip" title="Edit" class="btn btn-warning btn-xs"><i class="far far-edit "></i> </a>
                                 </td>
                             </tr>
                             @endforeach
