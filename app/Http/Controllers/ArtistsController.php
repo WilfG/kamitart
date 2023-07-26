@@ -84,14 +84,17 @@ class ArtistsController extends Controller
      */
     public function show(string $id)
     {
+        // $arts = DB::table('arts')->where('artist_id', $id)->get();
+        // var_dump($arts);die;
         $artist = DB::table('artists')
         ->join('countries', 'artists.country', 'countries.id')
         ->join('states', 'artists.state', 'states.id')
         ->join('cities', 'artists.city', 'cities.id')
         ->where('artists.id', $id)
-        ->first(['artists.*', 'states.name as a_state', 'countries.name as a_country', 'cities.name as a_city']);
-        $arts = DB::table('arts')->where('artist_id', $artist->id)->get();
-        return view('fronts.artists.show', compact('arts', 'artist'));
+        ->select(['artists.*', 'states.name as a_state', 'countries.name as a_country', 'cities.name as a_city'])
+        ->first();
+        $arts = DB::table('arts')->where('artist_id', $id)->get();
+        return view('fronts.artists.show', compact('artist', 'arts'));
     }
 
     /**
@@ -115,8 +118,8 @@ class ArtistsController extends Controller
             'phoneNumber' => ['required', 'min:2', 'max:50', 'string'],
             'bio' => ['required', 'min:2', 'max:500', 'string'],
             'birthdate' => ['nullable', 'min:2', 'max:50', 'string'],
-            'city' => ['nullable', 'min:2', 'max:50', 'string'],
-            'state' => ['nullable', 'min:2', 'max:50', 'string'],
+            'city' => ['required', 'min:2', 'max:50', 'string'],
+            'state' => ['required', 'min:2', 'max:50', 'string'],
             'country' => ['required', 'min:2', 'max:50', 'string'],
             'address' => ['required', 'min:2', 'max:100', 'string'],
             'email' => ['nullable', 'email'],
