@@ -8,8 +8,9 @@
     <meta name="description" content="Free minimal portfolio web site template,minmal portfolio,porfolio,bootstrap template,html template,photography " />
     <title>KamitArt</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/artfric/public/assets/css/main.min.css">
-    <link rel="stylesheet" href="/artfric/public/assets/css/rtl.css">
+    <link rel="stylesheet" href="/assets/css/main.min.css">
+    <link rel="stylesheet" href="/assets/css/rtl.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @stack('styles')
 
 </head>
@@ -22,22 +23,22 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="col-lg-5 col-md-5"></div>
+                <div class="col-lg-3 col-md-3"></div>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Project</a>
+                            <a class="nav-link" href="{{route('our-arts')}}">Our Arts</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="{{route('about')}}">About</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="{{route('contact')}}">Contact</a>
                         </li>
                     </ul>
 
@@ -70,9 +71,9 @@
                 </div>
                 <div class="col-lg-4 mt-4 ml-auto">
                     <ul class="list-unstyled footer-link">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Categories</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/our-arts">Categories</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-auto ml-lg-auto mt-4">
@@ -89,7 +90,7 @@
         </div>
         <!--/.container-->
     </footer>
-    <script src="/artfric/public/assets/js/main.min.js"></script>
+    <script src="/assets/js/main.min.js"></script>
     @stack('scripts')
 </body>
 

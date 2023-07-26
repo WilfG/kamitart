@@ -93,7 +93,10 @@
                                     <textarea name="bio"  class="form-control" required>{{$artist->bio}}</textarea>
                                 </div>
 
-
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="artPath">Artist's Photo :</label>
+                                    <input type="file" accept=".png,.gif,.jpg,.webp,.pdf" id="artistPath" name="artistPath" class="form-control" required="">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-8">

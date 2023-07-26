@@ -44,7 +44,7 @@ class ArtistsController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio'), [
+        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio', 'artistPath'), [
             'firstname' =>  ['required', 'min:2', 'max:50', 'string'],
             'lastname' => ['required', 'min:2', 'max:50', 'string'],
             'bio' => ['required', 'min:2', 'max:500', 'string'],
@@ -54,28 +54,39 @@ class ArtistsController extends Controller
             'country' => ['required', 'min:2', 'max:50', 'string'],
             'address' => ['required', 'min:2', 'max:100', 'string'],
             'email' => ['nullable', 'email', 'unique:artists,email'],
+            'artistPath' => 'required',
+            'artistPath' => 'file|mimes:jpeg,jpg,png,gif,PNG,JPG,JPEG',
+
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->with('errors', $validator->errors());
         }
+        if ($request->hasfile('artistPath')) {
 
+            
+            $extension = explode('.', $request->file('artistPath')->getClientOriginalName())[1];
+            $filename = uniqid() . '.' . $extension;
+            $path = 'artists_images';
 
-        $artist = Artist::create([
-            'firstname' =>  $request->firstname,
-            'lastname' => $request->lastname,
-            'phoneNumber' => $request->phoneNumber,
-            'email' => $request->email,
-            'birthdate' => $request->birthdate,
-            'city' => $request->city,
-            'state' => $request->state,
-            'country' => $request->country,
-            'address' => $request->address,
-            'bio' => $request->bio,
-        ]);
+            $artist = Artist::create([
+                'firstname' =>  $request->firstname,
+                'lastname' => $request->lastname,
+                'phoneNumber' => $request->phoneNumber,
+                'email' => $request->email,
+                'birthdate' => $request->birthdate,
+                'city' => $request->city,
+                'state' => $request->state,
+                'country' => $request->country,
+                'address' => $request->address,
+                'bio' => $request->bio,
+                'photoPath' => $filename
+            ]);
 
-        if ($artist) {
-            return redirect('dashboard/artists');
+            if ($artist) {
+                $request->file('artPath')->move(public_path($path), $filename);
+                return redirect('dashboard/artists');
+            }
         }
     }
 
@@ -87,12 +98,12 @@ class ArtistsController extends Controller
         // $arts = DB::table('arts')->where('artist_id', $id)->get();
         // var_dump($arts);die;
         $artist = DB::table('artists')
-        ->join('countries', 'artists.country', 'countries.id')
-        ->join('states', 'artists.state', 'states.id')
-        ->join('cities', 'artists.city', 'cities.id')
-        ->where('artists.id', $id)
-        ->select(['artists.*', 'states.name as a_state', 'countries.name as a_country', 'cities.name as a_city'])
-        ->first();
+            ->join('countries', 'artists.country', 'countries.id')
+            ->join('states', 'artists.state', 'states.id')
+            ->join('cities', 'artists.city', 'cities.id')
+            ->where('artists.id', $id)
+            ->select(['artists.*', 'states.name as a_state', 'countries.name as a_country', 'cities.name as a_city'])
+            ->first();
         $arts = DB::table('arts')->where('artist_id', $id)->get();
         return view('fronts.artists.show', compact('artist', 'arts'));
     }
@@ -110,9 +121,9 @@ class ArtistsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Artist $artist)
+    public function update(Request $request, string $id)
     {
-        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio'), [
+        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio', 'artistPath'), [
             'firstname' =>  ['required', 'min:2', 'max:50', 'string'],
             'lastname' => ['required', 'min:2', 'max:50', 'string'],
             'phoneNumber' => ['required', 'min:2', 'max:50', 'string'],
@@ -123,27 +134,57 @@ class ArtistsController extends Controller
             'country' => ['required', 'min:2', 'max:50', 'string'],
             'address' => ['required', 'min:2', 'max:100', 'string'],
             'email' => ['nullable', 'email'],
+            'artistPath' => 'nullable',
+            'artistPath' => 'file|mimes:jpeg,jpg,png,gif,PNG,JPG,JPEG',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->with('errors', $validator->errors());
         }
 
+        $content_to_update = DB::table('artists')->where('id', $id)->first();
 
-        $artist->update([
-            'firstname' =>  $request->firstname,
-            'lastname' => $request->lastname,
-            'phoneNumber' => $request->phoneNumber,
-            'email' => $request->email,
-            'birthdate' => $request->birthdate,
-            'city' => $request->city,
-            'state' => $request->state,
-            'country' => $request->country,
-            'address' => $request->address,
-            'bio' => $request->bio,
-        ]);
+        if ($request->hasfile('artistPath')) {
+            $extension = explode('.', $request->file('artistPath')->getClientOriginalName())[1];
+            $filename = uniqid() . '.' . $extension;
+            $path = 'artists_images';
+            // $request->file('artistPath')->move(public_path($path), $filename);
+            $artist = DB::table('artists')->where('id', $id)->update([
+                'firstname' =>  $request->firstname,
+                'lastname' => $request->lastname,
+                'phoneNumber' => $request->phoneNumber,
+                'email' => $request->email,
+                'birthdate' => $request->birthdate,
+                'city' => $request->city,
+                'state' => $request->state,
+                'country' => $request->country,
+                'address' => $request->address,
+                'bio' => $request->bio,
+                'photoPath' => $filename
 
-        return redirect()->back()->with('status', 'Artist informations updated successfully');
+            ]);
+            if (file_exists(public_path('artists_images/' . $content_to_update->photoPath))) {
+                unlink(public_path('artists_images/' . $content_to_update->photoPath));
+            }
+
+            $request->file('artistPath')->move(public_path('artists_images'), $filename);
+            return redirect()->back()->with('status', 'Artist updated with success.');
+        } else {
+            $artist = DB::table('artists')->where('id', $id)->update([
+                'firstname' =>  $request->firstname,
+                'lastname' => $request->lastname,
+                'phoneNumber' => $request->phoneNumber,
+                'email' => $request->email,
+                'birthdate' => $request->birthdate,
+                'city' => $request->city,
+                'state' => $request->state,
+                'country' => $request->country,
+                'address' => $request->address,
+                'bio' => $request->bio,
+            ]);
+
+            return redirect()->back()->with('status', 'Artist informations updated successfully');
+        }
     }
 
     /**

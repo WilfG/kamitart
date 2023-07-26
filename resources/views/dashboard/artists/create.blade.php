@@ -62,14 +62,14 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3" >
                                     <label for="state-dd">States:</label>
-                                    <select id="state-dd" name="state" class="form-control">
+                                    <select id="state-dd" name="state" class="form-control" required>
                                     </select>
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                     <label for="city-dd">Cities:</label>
-                                    <select id="city-dd" name="city" class="form-control">
+                                    <select id="city-dd" name="city" class="form-control" required>
                                     </select>
                                 </div>
                             </div>
@@ -89,6 +89,10 @@
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="birthdate">Bio:</label>
                                     <textarea name="bio" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="artPath">Artist's Photo :</label>
+                                    <input type="file" accept=".png,.gif,.jpg,.webp,.pdf" id="artistPath" name="artistPath" class="form-control" required="">
                                 </div>
                             </div>
 

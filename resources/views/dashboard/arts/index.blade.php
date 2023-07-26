@@ -58,7 +58,7 @@
                                 <td>{{ $artist_name }}</td>
                                 <td>{{ $categorie_name }}</td>
                                 <td>
-                                    <a href="{{route('arts.show', $art->id)}}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Voir les pièces jointes"><i class="fa fa-eye"></i></a>
+                                    <a href="" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Voir les pièces jointes"><i class="fa fa-eye"></i></a>
                                     <a href="{{route('arts.edit', $art->id)}}" data-toggle="tooltip" title="Modifier" class="btn btn-warning btn-xs"><i class="fa fa-edit "></i> </a>
                                 </td>
                             </tr>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArtistsController;
 use App\Http\Controllers\ArtsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\UsersController;
 use App\Models\Art;
@@ -27,6 +28,10 @@ Route::get('home', function(){
 });
 
 Route::get('/', [FrontController::class, 'index']);
+Route::get('our-arts', [FrontController::class, 'ourArt'])->name('our-arts');
+Route::get('template', [FrontController::class, 'template'])->name('template');
+Route::get('about', [FrontController::class, 'about'])->name('about');
+Route::get('contact', [FrontController::class, 'contact'])->name('contact');
 
 Route::get('logout', [UsersController::class, 'logout']);
 Route::get('art_show/{id}', [ArtsController::class, 'show'])->name('art.show');
@@ -45,6 +50,7 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('users', UsersController::class);
         Route::resource('artists', ArtistsController::class)->except('show');
         Route::resource('categories', CategoriesController::class);
+        Route::resource('events', EventsController::class);
         Route::resource('arts', ArtsController::class)->except('show');
     });
 });
