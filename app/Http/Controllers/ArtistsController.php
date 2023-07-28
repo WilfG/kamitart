@@ -44,7 +44,7 @@ class ArtistsController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio', 'artistPath', 'features'), [
+        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio', 'artistPath', 'featured'), [
             'firstname' =>  ['required', 'min:2', 'max:50', 'string'],
             'lastname' => ['required', 'min:2', 'max:50', 'string'],
             'bio' => ['required', 'min:2', 'max:500', 'string'],
