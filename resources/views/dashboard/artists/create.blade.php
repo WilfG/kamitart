@@ -62,7 +62,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3" >
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                     <label for="state-dd">States:</label>
                                     <select id="state-dd" name="state" class="form-control" required>
                                     </select>
@@ -96,7 +96,15 @@
                                 </div>
                             </div>
 
-
+                            <div class="row">
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="featured">Featured :</label>
+                                    <select id="featured" name="featured" required="">
+                                        <option value="@php echo 1; @endphp">Yes</option>
+                                        <option value="@php echo 0; @endphp">No</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                 </div>

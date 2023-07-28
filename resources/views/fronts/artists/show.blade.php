@@ -26,11 +26,11 @@
                             <div class="col-md-12">
                                 <p>
                                     <strong>State :{{$artist->a_state}}</strong><br>
-                                    <strong>City : {{$artist->a_city}}</strong><br>
-                                    <br>Birthdate :{{$artist->birthdate}}
+                                    <!-- <strong>City : {{$artist->a_city}}</strong><br>
+                                    <br>Birthdate :{{$artist->birthdate}} -->
                                 </p>
                                 <p><strong>Country :{{$artist->a_country}}</strong>
-                                    <br>Address :{{$artist->address}}
+                                    <!-- <br>Address :{{$artist->address}} -->
                                 </p>
                             </div>
 

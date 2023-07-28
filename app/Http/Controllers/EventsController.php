@@ -31,13 +31,13 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->only('title', 'description', 'date', 'imagePath'), [
+        $validator = Validator::make($request->only('title', 'description', 'date', 'imagePath', 'featured'), [
             'title' =>  ['required', 'min:2', 'max:50', 'string'],
             'description' => ['required', 'min:2', 'max:191', 'string'],
             'date' => ['required', 'string'],
             'imagePath' => 'required',
             'imagePath' => 'file|mimes:jpeg,jpg,png,gif,PNG,JPG,JPEG',
-
+            'featured' => ['required', 'numeric'],
         ]);
 
         if ($validator->fails()) {
@@ -55,7 +55,7 @@ class EventsController extends Controller
                 'description' => $request->description,
                 'date' => $request->date,
                 'imagePath' => $filename,
-               
+                'featured' => $request->featured,
             ]);
 
             if ($event) {
@@ -88,13 +88,14 @@ class EventsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validator = Validator::make($request->only('filename', 'title', 'description', 'date', 'imagePath'), [
+        $validator = Validator::make($request->only('filename', 'title', 'description', 'date', 'imagePath', 'featured'), [
             'title' =>  ['required', 'min:2', 'max:50', 'string'],
             'description' => ['required', 'min:2', 'max:191', 'string'],
             'date' => ['required', 'string'],
-            'imagePath' => 'required',
+            'imagePath' => 'nullable',
             'imagePath' => 'file|mimes:jpeg,jpg,png,gif,PNG,JPG,JPEG',
             'filename' => ['nullable', 'string'],
+            'featured' => ['required', 'numeric'],
         ]);
 
         if ($validator->fails()) {
@@ -109,11 +110,12 @@ class EventsController extends Controller
             $extension = explode('.', $request->file('imagePath')->getClientOriginalName())[1];
             $filename = uniqid() . '.' . $extension;
             $path = 'events_images';
-           $event = DB::table('events')->where('id', $id)->update([
+            $event = DB::table('events')->where('id', $id)->update([
                 'title' => $request->title,
                 'description' => $request->description,
                 'date' => $request->date,
-                'imagePath' => $filename
+                'imagePath' => $filename,
+                'featured' => $request->featured,
             ]);
             if (file_exists(public_path('events_images/' . $content_to_update->imagePath))) {
                 unlink(public_path('events_images/' . $content_to_update->imagePath));
@@ -126,6 +128,7 @@ class EventsController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'date' => $request->date,
+                'featured' => $request->featured,
             ]);
 
             return redirect()->back()->with('status', 'Event updated with success.');

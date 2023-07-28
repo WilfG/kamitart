@@ -40,13 +40,13 @@
 
                             </div>
                             <div class="row">
-                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5" >
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="id_type">Phone Number :</label>
                                     <input type="text" name="phoneNumber" value="{{$artist->phoneNumber}}" class="form-control" required>
                                 </div>
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="id_type">Email :</label>
-                                    <input type="email" name="email" value="{{$artist->email}}" class="form-control"require>
+                                    <input type="email" name="email" value="{{$artist->email}}" class="form-control" require>
                                 </div>
 
                             </div>
@@ -57,8 +57,8 @@
                                     <select id="country-dd" name="country" class="form-control" require>
                                         <option value="">Select Country</option>
                                         @foreach ($data['countries'] as $dt)
-                                           
-                                        <option value="{{$dt->id}}"  @if($dt->id == $artist->country) selected  @endif>
+
+                                        <option value="{{$dt->id}}" @if($dt->id == $artist->country) selected @endif>
                                             {{$dt->name}}
                                         </option>
                                         @endforeach
@@ -90,14 +90,25 @@
                             <div class="row">
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="birthdate">Bio:</label>
-                                    <textarea name="bio"  class="form-control" required>{{$artist->bio}}</textarea>
+                                    <textarea name="bio" class="form-control" required>{{$artist->bio}}</textarea>
                                 </div>
 
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="artPath">Artist's Photo :</label>
-                                    <input type="file" accept=".png,.gif,.jpg,.webp,.pdf" id="artistPath" name="artistPath" class="form-control" required="">
+                                    <input type="file" accept=".png,.gif,.jpg,.webp,.pdf" id="artistPath" name="artistPath" class="form-control">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="featured">Featured :</label>
+                                    <select id="featured" name="featured" required="">
+                                        <option value="@php  echo 1; @endphp" @if($artist->featured == 1) selected @endif>Yes</option>
+                                        <option value="@php echo 0; @endphp" @if($artist->featured == 0) selected @endif>No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
                             <div class="row">
                                 <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                 </div>

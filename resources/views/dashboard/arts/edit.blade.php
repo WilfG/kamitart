@@ -45,7 +45,7 @@
                                     <label for="status">Status :</label>
                                     <select name="status" class="form-control" required>
                                         @if($art->status == 0)
-                                       <option value=""></option>
+                                        <option value=""></option>
                                         <option value="no" selected>No</option>
                                         <option value="yes">Yes</option>
                                         @elseif($art->status == 1)
@@ -71,7 +71,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                               <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="artist_id">Artist :</label>
                                     <select name="categorie_id" class="form-control" required>
                                         <option value=""></option>
@@ -85,9 +85,23 @@
                             <div class="row">
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="artPath">Art's Image :</label>
-                                    <input type="file" accept=".png,.gif,.jpg" id="artPath" name="artPath" >
+                                    <input type="file" accept=".png,.gif,.jpg" id="artPath" name="artPath">
+                                </div>
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="featured">Featured :</label>
+                                    <select id="featured" name="featured" required="">
+                                        <option value="@php  echo 1; @endphp" @if($art->featured == 1) selected @endif>Yes</option>
+                                        <option value="@php echo 0; @endphp" @if($art->featured == 0) selected @endif>No</option>
+                                    </select>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="features">Features :</label>
+                                    <textarea name="features" class="form-control" required>{{ $art->features }}</textarea>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                 </div>

@@ -37,7 +37,7 @@ class ArtsController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->only('title', 'description', 'status', 'sale_price', 'artPath', 'artist_id', 'categorie_id'), [
+        $validator = Validator::make($request->only('title', 'description', 'status', 'sale_price', 'artPath', 'artist_id', 'categorie_id', 'featured', 'features'), [
             'title' =>  ['required', 'min:2', 'max:50', 'string'],
             'description' => ['required', 'min:2', 'max:191', 'string'],
             'status' => ['required', 'string'],
@@ -46,6 +46,8 @@ class ArtsController extends Controller
             'artPath' => 'file|mimes:jpeg,jpg,png,gif,PNG,JPG,JPEG',
             'artist_id' => ['required', 'numeric'],
             'categorie_id' => ['required', 'numeric'],
+            'featured' => ['required', 'numeric'],
+            'features' => ['required', 'min:2', 'max:50', 'string'],
         ]);
 
         if ($validator->fails()) {
@@ -70,6 +72,8 @@ class ArtsController extends Controller
                 'artPath' => $filename,
                 'artist_id' => $request->artist_id,
                 'categorie_id' => $request->categorie_id,
+                'featured' => $request->featured,
+                'features' => $request->features,
             ]);
 
             if ($art) {
@@ -105,7 +109,7 @@ class ArtsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validator = Validator::make($request->only('filename', 'title', 'description', 'status', 'sale_price', 'artPath', 'artist_id', 'categorie_id'), [
+        $validator = Validator::make($request->only('filename', 'title', 'description', 'status', 'sale_price', 'artPath', 'artist_id', 'categorie_id', 'featured', 'features'), [
             'title' =>  ['required', 'min:2', 'max:50', 'string'],
             'description' => ['nullable', 'min:2', 'max:191', 'string'],
             'status' => ['nullable', 'string'],
@@ -115,6 +119,8 @@ class ArtsController extends Controller
             'artist_id' => ['required', 'numeric'],
             'categorie_id' => ['required', 'numeric'],
             'filename' => ['nullable', 'string'],
+            'featured' => ['required', 'numeric'],
+            'features' => ['required', 'min:2', 'max:50', 'string'],
         ]);
 
         if ($validator->fails()) {
@@ -141,7 +147,9 @@ class ArtsController extends Controller
                 'sale_price' => $request->sale_price,
                 'artist_id' => $request->artist_id,
                 'categorie_id' => $request->categorie_id,
-                'artPath' => $filename
+                'artPath' => $filename,
+                'featured' => $request->featured,
+                'features' => $request->features,
             ]);
             if (file_exists(public_path('arts_images/'. $content_to_update->artPath))) {
                 unlink(public_path('arts_images/'. $content_to_update->artPath));
@@ -158,6 +166,8 @@ class ArtsController extends Controller
                 'sale_price' => $request->sale_price,
                 'artist_id' => $request->artist_id,
                 'categorie_id' => $request->categorie_id,
+                'featured' => $request->featured,
+                'features' => $request->features,
             ]);
            
                 return redirect()->back()->with('status', 'Art updated with success.');

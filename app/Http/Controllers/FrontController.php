@@ -14,11 +14,12 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $arts = DB::table('arts')->get();
-        $artists = DB::table('artists')->get();
-        $events = DB::table('events')->get();
+        $arts = DB::table('arts')->where('featured', 1)->get();
+        $artists = DB::table('artists')->where('featured', 1)->get();
+        $events = DB::table('events')->where('featured', 1)->get();
         return view('welcome', compact('events', 'arts', 'artists'));
     }
+
     public function ourArt()
     {
         $categories = Category::all();

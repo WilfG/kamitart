@@ -44,7 +44,7 @@ class ArtistsController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio', 'artistPath'), [
+        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio', 'artistPath', 'features'), [
             'firstname' =>  ['required', 'min:2', 'max:50', 'string'],
             'lastname' => ['required', 'min:2', 'max:50', 'string'],
             'bio' => ['required', 'min:2', 'max:500', 'string'],
@@ -56,6 +56,7 @@ class ArtistsController extends Controller
             'email' => ['nullable', 'email', 'unique:artists,email'],
             'artistPath' => 'required',
             'artistPath' => 'file|mimes:jpeg,jpg,png,gif,PNG,JPG,JPEG',
+            'featured' => ['required', 'numeric'],
 
         ]);
 
@@ -80,7 +81,8 @@ class ArtistsController extends Controller
                 'country' => $request->country,
                 'address' => $request->address,
                 'bio' => $request->bio,
-                'photoPath' => $filename
+                'photoPath' => $filename,
+                'featured' => $request->featured,
             ]);
 
             if ($artist) {
@@ -123,7 +125,7 @@ class ArtistsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio', 'artistPath'), [
+        $validator = Validator::make($request->only('firstname', 'lastname', 'phoneNumber', 'email', 'birthdate', 'city', 'state', 'country', 'address', 'bio', 'artistPath', 'featured'), [
             'firstname' =>  ['required', 'min:2', 'max:50', 'string'],
             'lastname' => ['required', 'min:2', 'max:50', 'string'],
             'phoneNumber' => ['required', 'min:2', 'max:50', 'string'],
@@ -136,6 +138,7 @@ class ArtistsController extends Controller
             'email' => ['nullable', 'email'],
             'artistPath' => 'nullable',
             'artistPath' => 'file|mimes:jpeg,jpg,png,gif,PNG,JPG,JPEG',
+            'featured' => ['required', 'numeric'],
         ]);
 
         if ($validator->fails()) {
@@ -160,8 +163,8 @@ class ArtistsController extends Controller
                 'country' => $request->country,
                 'address' => $request->address,
                 'bio' => $request->bio,
-                'photoPath' => $filename
-
+                'photoPath' => $filename,
+                'featured' => $request->featured,
             ]);
             if (file_exists(public_path('artists_images/' . $content_to_update->photoPath))) {
                 unlink(public_path('artists_images/' . $content_to_update->photoPath));
@@ -181,6 +184,7 @@ class ArtistsController extends Controller
                 'country' => $request->country,
                 'address' => $request->address,
                 'bio' => $request->bio,
+                'featured' => $request->featured,
             ]);
 
             return redirect()->back()->with('status', 'Artist informations updated successfully');

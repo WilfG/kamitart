@@ -47,7 +47,16 @@
                                 
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="imagePath">Event Image :</label>
-                                    <input type="file" name="imagePath" class="form-control" required>
+                                    <input type="file" name="imagePath" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="featured">Featured :</label>
+                                    <select id="featured" name="featured" required="">
+                                        <option value="@php  echo 1; @endphp" @if($event->featured == 1) selected @endif>Yes</option>
+                                        <option value="@php echo 0; @endphp" @if($event->featured == 0) selected @endif>No</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">

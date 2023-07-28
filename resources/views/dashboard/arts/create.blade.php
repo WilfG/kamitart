@@ -15,7 +15,7 @@
                     <!-- /.card-header -->
                     <!-- form start -->
                     <div class="card-body">
-                    @if (session('errors'))
+                        @if (session('errors'))
                         <div class="mb-4 font-medium text-sm text-green-600 alert alert-danger">
                             {{ session('errors') }}
                         </div>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="sale_price">Sale price ($) :</label>
-                                    <input type="number"  min="0" name="sale_price" class="form-control">
+                                    <input type="number" min="0" name="sale_price" class="form-control">
                                 </div>
 
                             </div>
@@ -57,7 +57,7 @@
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="artist_id">Artist :</label>
                                     <select name="artist_id" class="form-control" required>
-                                    <option value=""></option>
+                                        <option value=""></option>
                                         @foreach($artists as $artist)
                                         <option value="{{ $artist->id }}">{{ $artist->firstname .' '. $artist->lastname }}</option>
                                         @endforeach
@@ -66,7 +66,7 @@
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="artist_id">Category :</label>
                                     <select name="categorie_id" class="form-control" required>
-                                    <option value=""></option>
+                                        <option value=""></option>
                                         @foreach($categories as $categorie)
                                         <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
                                         @endforeach
@@ -74,10 +74,23 @@
                                 </div>
                             </div>
                             <div class="row">
-                           
+
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="artPath">Art's Image :</label>
                                     <input type="file" accept=".png,.gif,.jpg,.webp,.pdf" id="artPath" name="artPath" required="">
+                                </div>
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="featured">Featured :</label>
+                                    <select id="featured" name="featured" required="">
+                                        <option value="@php echo 1; @endphp">Yes</option>
+                                        <option value="@php echo 0; @endphp">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <label for="features">Features :</label>
+                                    <textarea name="features" class="form-control" required></textarea>
                                 </div>
                             </div>
                             <div class="row">
