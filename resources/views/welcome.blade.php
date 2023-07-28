@@ -2,6 +2,11 @@
 
 @section('main')
 <style>
+    .navbar-light .navbar-toggler {
+        color: #DFBA69;
+        border-color: #DFBA69;
+    }
+
     header {
         background-color: #333;
         color: #fff;
@@ -10,7 +15,7 @@
     }
 
     header h1 {
-        margin-left: 450px;
+        margin-left: 50px;
     }
 
     nav.bas {
@@ -24,6 +29,27 @@
         color: #fff;
         text-decoration: none;
         margin: 0 10px;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 768px) {
+        header {
+            padding: 10px 0;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        nav.bas {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav.bas a {
+            margin: 5px 0;
+            display: block;
+        }
     }
 
     /* Styling for main content sections */
@@ -50,12 +76,34 @@
         padding: 10px;
         margin: 10px;
         max-width: 300px;
+        transition: box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
         background: black;
     }
 
     .card img {
         max-width: 100%;
         border-radius: 5px;
+    }
+
+    .card h3 {
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        display: none;
+        margin-top: 10px;
+    }
+
+    .card:hover .event-description {
+        display: block;
+    }
+
+    @media screen and (max-width: 768px) {
+        .cards-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
     .event-description {
@@ -72,19 +120,16 @@
         z-index: 1;
         /* Ensures the description is above the image */
     }
-
-    .card:hover .event-description {
-        display: block;
-    }
 </style>
 <style>
     .banner-slider {
-        width: 100%;
+        max-width: 100%;
         overflow: hidden;
         position: relative;
         margin-top: -150px;
         height: 400px;
     }
+
 
     .slide {
         display: none;
@@ -110,6 +155,15 @@
         animation: typing 4s steps(60, end);
         /* Animation duration and steps */
 
+    }
+
+    @media screen and (max-width: 768px) {
+        .caption {
+            font-size: 14px;
+            bottom: 10px;
+            left: 10px;
+            padding: 5px;
+        }
     }
 
     /* Define the typing animation */
@@ -244,7 +298,7 @@
                     <div class="event-description">
                         <img src="/events_images/{{$event->imagePath}}">
                     </div>
-                  
+
                 </div>
                 @endforeach
             </div>
