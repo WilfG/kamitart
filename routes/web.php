@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ArtistsController;
+use App\Http\Controllers\ArtRequestController;
 use App\Http\Controllers\ArtsController;
+use App\Http\Controllers\BidsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\UsersController;
@@ -36,6 +39,9 @@ Route::get('contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('logout', [UsersController::class, 'logout']);
 Route::get('art_show/{id}', [ArtsController::class, 'show'])->name('art.show');
 Route::get('artist_show/{id}', [ArtistsController::class, 'show'])->name('artist.show');
+Route::post('store_bid', [BidsController::class, 'store'])->name('bid.store');
+Route::post('art_request', [ArtRequestController::class, 'store'])->name('artRequest');
+Route::post('contact_us', [ContactController::class, 'store'])->name('contactUs');
 Route::middleware(['auth'])->group(function(){
     
     Route::prefix('dashboard')->group(function () {
@@ -49,6 +55,7 @@ Route::middleware(['auth'])->group(function(){
         
         Route::resource('users', UsersController::class);
         Route::resource('artists', ArtistsController::class)->except('show');
+        Route::resource('bids', BidsController::class)->except('store');
         Route::resource('categories', CategoriesController::class);
         Route::resource('events', EventsController::class);
         Route::resource('arts', ArtsController::class)->except('show');

@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\ArtRequest;
+use App\Events\Bid;
+use App\Events\ContactUs;
+use App\Listeners\ArtRequestListener;
+use App\Listeners\ContactUsListener;
+use App\Listeners\EmailOwnerAboutBids;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +23,15 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        Bid::class => [
+            EmailOwnerAboutBids::class
+        ],
+        ArtRequest::class => [
+            ArtRequestListener::class
+        ],
+        ContactUs::class => [
+            ContactUsListener::class
         ],
     ];
 

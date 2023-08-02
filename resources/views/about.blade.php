@@ -46,4 +46,6 @@
         </div>
     </section>
 </main>
+@include('art_request_popup')
+
 @endsection

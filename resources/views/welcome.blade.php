@@ -92,8 +92,8 @@
     }
 
     .card p {
-        display: none;
-        margin-top: 10px;
+        /* display: none;
+        margin-top: 10px; */
     }
 
     .card:hover .event-description {
@@ -178,6 +178,78 @@
             /* Fully reveal all characters */
         }
     }
+
+     /* Styling for the popup */
+     .popup-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        border: 2px solid;
+        border-color: #CF9C2C;
+    }
+
+    .popup-content {
+        background-color: rgba(0, 0, 0, 0.7);
+        /* Set a black transparent background */
+        padding: 20px;
+        border: 2px solid;
+        border-color: #CF9C2C;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        max-width: 600px;
+        width: 90%;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        color: #CF9C2C;
+    }
+
+    /* Styling for the form */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    #submit {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Add media query for responsiveness */
+    @media screen and (max-width: 600px) {
+        .popup-content {
+            max-width: 90%;
+        }
+    }
 </style>
 <!-- Include jQuery library -->
 <script>
@@ -206,6 +278,26 @@
 
         // Show the first slide initially
         showSlide(currentIndex);
+
+        // Get the popup and the button that opens and closes it
+         popupContainer = $('#popupContainer');
+         closePopupBtn = $('#closePopupBtn');
+
+        // Function to open the popup
+        $('.openPopupBtn').on('click', function(){
+
+            $('#event_id').attr('value', $(this).data('event'));
+            popupContainer.fadeIn();
+            $('.popup-container').css('display', 'flex');
+        });
+
+        // Function to close the popup
+        function closePopup() {
+            popupContainer.fadeOut();
+        }
+
+        // Event listeners to open and close the popup
+        closePopupBtn.on('click', closePopup);
     });
 </script>
 
@@ -276,29 +368,20 @@
             </div>
             <!-- Add more artist cards as needed -->
         </div>
-        <div class="row">
 
-            <div class="col-lg-5 col-md-5 col-sm-5">
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <h2>Upcoming Events</h2>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
-            </div>
-        </div>
 
         <div class="section" id="events">
-            <div class="col-lg-2 col-md-2 col-sm-2">
-            </div>
+            <h2>Upcoming Events</h2>
             <div class="cards-grid">
                 @foreach($events as $event)
-                <div class="card col-lg-8 col-md-8 col-sm-8">
+                <div class="card col-lg-8 col-md-8 col-sm-8" style="height:100%">
+                    <span class="@if($art->status == 1) badge-rouge @elseif($art->status == 0) badge-vert @endif">@if($art->status == 1) Sold @endif</span>
                     <h3>{{$event->title}}</h3>
-                    <p>{{$event->date}} <br> {{ $event->description }}</p>
+                    <p>Date :{{$event->date}} <br> {{ $event->description }}</p>
                     <div class="event-description">
-                        <img src="/events_images/{{$event->imagePath}}">
+                        <img src="/events_images/{{$event->imagePath}}" style="width:100%; height:100%; position:relative">
+                        <button class="openPopupBtn" data-event="{{ $event->id }}"  style="background: #000; border-color: #CF9C2C; color: #fff; position:absolute; bottom:10px; right:130px">Bid</button>
                     </div>
-
                 </div>
                 @endforeach
             </div>
@@ -309,7 +392,44 @@
 
     </section>
 </main>
+<div class="popup-container" id="popupContainer">
+    <div class="popup-content">
+        <span class="close-btn" id="closePopupBtn">&times;</span>
+        <h2>Bid on event</h2>
+        @if (session('errors'))
+        <div class="mb-4 font-medium text-sm text-green-600 alert alert-danger">
+            {{ session('errors') }}
+        </div>
+        @endif
+        @if (session('status'))
+        <div class="mb-4 font-medium text-sm text-green-600 alert alert-success">
+            {{ session('status') }}
+        </div>
+        @endif
+        <form method="POST" action="store_bid">
+            @csrf
+            <input type="hidden" name="event_id" id="event_id">
+            <div class="form-group">
+                <label for="biderName">Full Name:</label>
+                <input type="text" id="biderName" name="biderName" required>
+            </div>
+            <div class="form-group">
+                <label for="biderEmail">Email:</label>
+                <input type="email" id="biderEmail" name="biderEmail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="biderPrice">Your Price ($):</label>
+                <input name="biderPrice" type="number" step="1" max="20" required>
+            </div>
+            <button id="submit" type="submit">Bid</button>
+        </form>
+    </div>
+</div>
+
+@include('art_request_popup')
 <hr>
+
 
 
 @endsection
