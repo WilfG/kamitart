@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\Bid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class BidsController extends Controller
@@ -42,13 +43,26 @@ class BidsController extends Controller
             return redirect()->back()->with('errors', $validator->errors());
         }
 
-        event(new Bid($request->input('biderEmail')));
+        // event(new Bid($request->input('biderEmail')));
         DB::table('bids')->insert([
             'biderName' =>  $request->biderName,
             'biderEmail' => $request->biderEmail,
             'biderPrice' => $request->biderPrice,
             'event_id' => $request->event_id
         ]);
+
+        $email = $request->email;
+        $name = $request->fullname;
+        $subject = "Art's Request";
+        Mail::send(
+            'mail.bidding',
+            ['name' => $request->fullname],
+            function ($mail) use ($email, $name, $subject) {
+                $mail->from(getenv('MAIL_FROM_ADDRESS'), "Artfric");
+                $mail->to($email, $name);
+                $mail->subject($subject);
+            }
+        );
 
         return redirect()->back()->with('status', 'You bid on this event successfully, check email.');
     }
