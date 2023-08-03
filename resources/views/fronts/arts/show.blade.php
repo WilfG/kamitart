@@ -1,6 +1,7 @@
 @extends('frontLayouts.index')
 
-@section('main')<main role="main">
+@section('main')
+<main role="main">
     <section class="pt-4">
         <div class="container">
             <div class="row d-flex align-items-center">

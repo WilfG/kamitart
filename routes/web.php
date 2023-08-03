@@ -8,6 +8,10 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\PostCategoriesController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\PostTagsController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\UsersController;
 use App\Models\Art;
 use App\Models\Artist;
@@ -42,6 +46,8 @@ Route::get('artist_show/{id}', [ArtistsController::class, 'show'])->name('artist
 Route::post('store_bid', [BidsController::class, 'store'])->name('bid.store');
 Route::post('art_request', [ArtRequestController::class, 'store'])->name('artRequest');
 Route::post('contact_us', [ContactController::class, 'store'])->name('contactUs');
+Route::get('blog', [FrontController::class, 'showArticles'])->name('blog');
+Route::get('show_article/{id}', [FrontController::class, 'showSingleArticle'])->name('single_post');
 Route::middleware(['auth'])->group(function(){
     
     Route::prefix('dashboard')->group(function () {
@@ -59,5 +65,11 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('categories', CategoriesController::class);
         Route::resource('events', EventsController::class);
         Route::resource('arts', ArtsController::class)->except('show');
+
+        //Blog routes
+        Route::resource('posts', PostsController::class);
+        Route::resource('postcategories', PostCategoriesController::class);
+        Route::resource('tags', TagsController::class);
+        Route::resource('post_tags', PostTagsController::class);
     });
 });

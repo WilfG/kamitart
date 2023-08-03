@@ -10,7 +10,7 @@
                 <!-- jquery validation -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Art Category<small></small></h3>
+                        <h3 class="card-title">Edit Tag<small></small></h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -25,19 +25,15 @@
                             {{ session('status') }}
                         </div>
                         @endif
-                        <form role="form" action="{{route('artists.update', $artist->id)}}" method="post" enctype="multipart/form-data" id="form-notif">
+                        <form role="form" action="{{route('tags.update', $tag->id)}}" method="post" enctype="multipart/form-data" id="form-notif">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                     <label for="id_type">Name :</label>
-                                    <input type="text" name="firstname" value="{{$categorie->name}}" class="form-control" required>
+                                    <input type="text" name="name" value="{{$tag->name}}" class="form-control" required>
                                 </div>
-                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                    <label for="id_type">Description :</label>
-                                    <input type="text" name="lastname" value="{{$categorie->description}}" class="form-control" required>
-                                </div>
-
+                               
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-8">

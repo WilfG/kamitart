@@ -10,12 +10,12 @@
                 <!-- jquery validation -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Art Category<small></small></h3>
+                        <h3 class="card-title">Add Tag<small></small></h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <div class="card-body">
-                        @if (session('errors'))
+                    @if (session('errors'))
                         <div class="mb-4 font-medium text-sm text-green-600 alert alert-danger">
                             {{ session('errors') }}
                         </div>
@@ -25,27 +25,25 @@
                             {{ session('status') }}
                         </div>
                         @endif
-                        <form role="form" action="{{route('artists.update', $artist->id)}}" method="post" enctype="multipart/form-data" id="form-notif">
+                        <form action="{{ route('tags.store') }}" role="form" method="post" enctype="multipart/form-data" id="form-notif">
                             @csrf
-                            @method('PUT')
+                            {{ method_field('POST') }}
                             <div class="row">
                                 <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                    <label for="id_type">Name :</label>
-                                    <input type="text" name="firstname" value="{{$categorie->name}}" class="form-control" required>
+                                    <label for="name">Name :</label>
+                                    <input type="text" name="name" class="form-control" required>
                                 </div>
-                                <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                    <label for="id_type">Description :</label>
-                                    <input type="text" name="lastname" value="{{$categorie->description}}" class="form-control" required>
+                                
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3"><br>
+                                    <button class="btn btn-success pull-right" type="submit">Enregistrer </button>
                                 </div>
 
                             </div>
+                           
                             <div class="row">
                                 <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                 </div>
 
-                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                    <button class="btn btn-success pull-right" type="submit">Enregistrer </button>
-                                </div>
                             </div>
 
 
