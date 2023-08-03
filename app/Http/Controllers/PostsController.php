@@ -38,7 +38,7 @@ class PostsController extends Controller
         $title = $request->input('title');
         $content = htmlspecialchars($request->input('content'), ENT_QUOTES);
 
-        if ($request->input('is_published') == 'on') {
+        if ($request->input('is_published') == 'yes') {
             $is_published = true;
         } else {
             $is_published = false;
