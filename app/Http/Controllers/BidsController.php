@@ -51,12 +51,12 @@ class BidsController extends Controller
             'event_id' => $request->event_id
         ]);
 
-        $email = $request->email;
-        $name = $request->fullname;
+        $email = $request->biderEmail;
+        $name = $request->biderName;
         $subject = "Art's Request";
         Mail::send(
             'mail.bidding',
-            ['name' => $request->fullname],
+            ['name' => $request->biderName],
             function ($mail) use ($email, $name, $subject) {
                 $mail->from(getenv('MAIL_FROM_ADDRESS'), "Artfric");
                 $mail->to($email, $name);
