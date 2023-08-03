@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Bid;
+use App\Models\Bid as ModelsBid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -15,7 +16,8 @@ class BidsController extends Controller
      */
     public function index()
     {
-        //
+        $bids = ModelsBid::all();
+        return view('dashboard.bids.index', compact('bids'));
     }
 
     /**

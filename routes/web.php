@@ -65,6 +65,9 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('categories', CategoriesController::class);
         Route::resource('events', EventsController::class);
         Route::resource('arts', ArtsController::class)->except('show');
+        Route::resource('bids', BidsController::class)->except('store');
+        Route::resource('artRequests', ArtRequestController::class)->except('store');
+        Route::resource('contacts', ContactController::class)->except('store');
 
         //Blog routes
         Route::resource('posts', PostsController::class);

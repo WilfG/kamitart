@@ -7,28 +7,29 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Arts' Categories list</h3>
+                    <h3 class="card-title">Contacts' list</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example2" class="table table-bordered table-hover tag_dataTable">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Actions</th>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                                <!-- <th>Actions</th> -->
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($categories as $categorie)
+                            @foreach($contacts as $contact)
                             <tr class="">
-                                <td>{{ $categorie->name }}</td>
-                                <td>{{ $categorie->description }}</td>
+                                <td>{{ $contact->firstname }}</td>
+                                <td>{{ $contact->lastname }}</td>
+                                <td>{{ $contact->email }}</td>
+                                <td>{{ $contact->message }}</td>
                                 
-                                <td>
-                                    <a href="{{route('categories.show', $categorie->id)}}" class="btn btn-primary btn-xs" data-toggle="tooltip" ><i class="fa fa-eye"></i></a>
-                                    <a href="{{route('categories.edit', $categorie->id)}}" data-toggle="tooltip" title="Modifier" class="btn btn-warning btn-xs"><i class="fa fa-edit "></i> </a>
-                                </td>
+                               
                             </tr>
                             @endforeach
                         </tbody>

@@ -392,6 +392,60 @@
                                     </ul>
                                 </li>
                             </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Bids</p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        
+                                        <li class="nav-item">
+                                            <a href="{{ url('dashboard/bids') }}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p> Bids list</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Art requests</p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        
+                                        <li class="nav-item">
+                                            <a href="{{ url('dashboard/artRequests') }}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p> Requests list</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Contacts</p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        
+                                        <li class="nav-item">
+                                            <a href="{{ url('dashboard/contacts') }}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p> Contacts list</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">

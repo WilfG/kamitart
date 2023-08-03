@@ -122,7 +122,7 @@
 
             <div class="form-group">
                 <label for="biderPrice">Your Price ($):</label>
-                <input name="biderPrice" type="number" step="1" max="20" required>
+                <input name="biderPrice" type="number" step="1" required>
             </div>
             <button id="submit" type="submit">Bid</button>
         </form>

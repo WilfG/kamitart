@@ -16,7 +16,8 @@ class ArtRequestController extends Controller
      */
     public function index()
     {
-        //
+        $requests = ArtRequest::all();
+        return view('dashboard.art_requests.index', compact('requests'));
     }
 
     /**
