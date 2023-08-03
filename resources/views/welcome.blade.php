@@ -11,15 +11,15 @@
                     <div class="banner-slider">
                         <div class="slide">
                             <img src="/arts_images/pexels-steve-johnson-1509534.jpg" alt="Slide 1">
-                            <div class="caption">Unveiling the Soul of Africa: Delve into the captivating world<br> of African arts and stories.</div>
+                            <div class="caption">Unveiling the Soul of Africa: <br> Delve into the captivating world<br> of African arts and stories.</div>
                         </div>
                         <div class="slide">
                             <img src="/arts_images/pexels-steve-johnson-1269968.jpg" alt="Slide 1">
-                            <div class="caption">Tales of the Savannah: African arts narrate the rich tapestry<br> of history, spirituality, and identity.</div>
+                            <div class="caption">Tales of the Savannah: <br> African arts narrate the rich tapestry<br> of history, spirituality, and identity.</div>
                         </div>
                         <div class="slide">
                             <img src="/arts_images/pexels-daian-gan-102127.jpg" alt="Slide 2">
-                            <div class="caption">Expressions of Ancestral Heritage: Step into the realm of <br>African arts and encounter a legacy that transcends<br> generations.</div>
+                            <div class="caption">Expressions of Ancestral Heritage: <br> Step into the realm of <br>African arts and encounter a legacy<br> that transcends generations.</div>
                         </div>
                         <!-- Add more slides here -->
                     </div>
