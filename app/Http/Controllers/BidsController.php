@@ -34,7 +34,7 @@ class BidsController extends Controller
         // dd('oui');
         $validator = Validator::make($request->only('biderName', 'biderEmail', 'biderPrice', 'event_id'), [
             'biderName' =>  ['required', 'min:2', 'max:50', 'string'],
-            'biderEmail' => ['required', 'email', 'unique:bids,biderEmail'],
+            'biderEmail' => ['required', 'email'],
             'biderPrice' => ['required', 'numeric'],
             'event_id' => 'required',
         ]);
